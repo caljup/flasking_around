@@ -30,3 +30,5 @@ Once application is running and database initialization CLI command has been reg
 flask init-db
 Initialized the database.
 ```
+
+You can then test user addition and Dumb Fortunes.
