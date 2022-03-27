@@ -1,0 +1,34 @@
+{% extends 'base.html' %} 
+
+{% block header %} 
+    <h1>{% block title %}Please God, Tell Me The Bengals Won{% endblock %}</h1>
+{% endblock %} 
+
+{% block content %}
+
+    {% if recieved %}
+    <div class='bengals'>
+        <div>
+            <img src="{{url_for('static', filename='bengals_b.gif')}}" />
+        </div>
+            <div class="football">
+                {{ schedule|safe }}
+            </div>
+        <div>
+            <img src="{{url_for('static', filename='bengals_b.gif')}}" />
+        </div>
+    </div>
+
+    {% else %}
+        <form method="post" id="football form">
+        </form>
+
+        <div class="schedule-button">
+            <button class="bengals-button" role="button" form="football form" value="Submit">Grab the Schedule</button>
+        </div>
+    {% endif %}
+
+
+
+
+{% endblock %} 

@@ -1,0 +1,38 @@
+<!doctype html>
+
+<title>{% block title %}{% endblock %}</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<nav>
+    <div><h1>Flasking Around</h1></div>
+    <div class="fufillment">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Take Me Home</a></li>
+            <li><a href="{{ url_for('chili_dogs_bp.chili_dogs_painting') }}">Chili Dawgs</a></li>
+            <li><a href="{{ url_for('dumb_fortunes_bp.get_dumb_fortunes') }}">Dumb Fortunes</a></li>
+            <li><a href="{{ url_for('football_stats_bp.football_statistics') }}">Dear God, Please Tell Me The Bengals Won</a></li>
+
+            {% if g.user %} 
+                <li><span>{{ g.user['username'] }}</span></li>
+                <li><a href="{{ url_for('authorization_bp.logout') }}">Log Out</a></li>
+            {% else %}
+                <li><a href="{{ url_for('authorization_bp.register') }}">Register</a></li>
+                <li><a href="{{ url_for('authorization_bp.login') }}">Log In</a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+</nav>
+
+<section class="content">
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %} 
+        <div class="flash">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+</section>
